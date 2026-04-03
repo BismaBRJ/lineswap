@@ -22,7 +22,7 @@ function render_lines() {
 
     const add_box_button = document.createElement("button");
     add_box_button.id = "btn_add_input_box";
-    add_box_button.value = "Add input box";
+    add_box_button.innerHTML = "Add input box";
     add_box_button.addEventListener("click", add_input_box);
     input_lines_div.appendChild(add_box_button);
     input_lines_div.appendChild(document.createElement("br"));
