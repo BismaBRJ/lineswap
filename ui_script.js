@@ -9,11 +9,11 @@ function render_lines() {
     const input_lines_div = document.getElementById("input_lines_div");
     input_lines_div.innerHTML = "";
 
-    for (let i = 0; i < n; i++) {
+    for (let idx = 0; idx < n; idx++) {
         if (n > 2) {
             // create delete button
             let delete_button = document.createElement("button");
-            delete_button.id = `delete_button_${i+1}`;
+            delete_button.id = `delete_button_${idx+1}`;
             delete_button.innerHTML = "Delete";
             // todo: actual deleting mechanism, define a new function etc
             input_lines_div.appendChild(delete_button);
@@ -21,15 +21,15 @@ function render_lines() {
 
         // create clear button
         let clear_button = document.createElement("button");
-        clear_button.id = `clear_button_${i+1}`;
+        clear_button.id = `clear_button_${idx+1}`;
         clear_button.innerHTML = "Clear";
-        // todo: actual clearing mechanism, define a new function etc
+        clear_button.addEventListener("click", () => clear_input_box(idx));
         input_lines_div.appendChild(clear_button);
 
         // create text box
-        let line = input_lines[i];
+        let line = input_lines[idx];
         let box = document.createElement("textarea");
-        box.id = `input_box_${i+1}`;
+        box.id = `input_box_${idx+1}`;
         box.rows = "4";
         box.cols = "80";
         box.value = line;
@@ -49,16 +49,16 @@ function save_lines() {
     // reset global variable
     input_lines = [];
 
-    let i = 0;
+    let idx = 0;
     let done = false;
     while (!done) {
-        let box = document.getElementById(`input_box_${i+1}`);
+        let box = document.getElementById(`input_box_${idx+1}`);
         if (box === null) {
             done = true;
         } else {
             let line = box.value;
             input_lines.push(line);
-            i++;
+            idx++;
         }
     }
 }
@@ -66,6 +66,12 @@ function save_lines() {
 function add_input_box() {
     save_lines();
     input_lines.push("");
+    render_lines();
+}
+
+function clear_input_box(idx) {
+    save_lines();
+    input_lines[idx] = "";
     render_lines();
 }
 
