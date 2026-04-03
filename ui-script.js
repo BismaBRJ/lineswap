@@ -11,6 +11,17 @@ function renderInputLines() {
     const inputLinesDiv = document.getElementById("inputLinesDiv");
     inputLinesDiv.innerHTML = "";
 
+    // fix out-of-bounds checked radio button data,
+    // which usually happens after deletion
+    if ((leftInputRadioIdx >= n) && (rightInputRadioIdx >= n)) {
+        leftInputRadioIdx = 0;
+        rightInputRadioIdx = 1;
+    } else if (leftInputRadioIdx >= n) {
+        leftInputRadioIdx = rightInputRadioIdx;
+    } else if (rightInputRadioIdx >= n) {
+        rightInputRadioIdx = leftInputRadioIdx;
+    }
+
     for (let idx = 0; idx < n; idx++) {
         if (n > 2) {
             // create delete button
