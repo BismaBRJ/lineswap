@@ -126,21 +126,24 @@ function deleteInputBox(idx) {
 }
 
 function swapInputLines() {
-    saveInputLines();
-
     const leftRadio = document.querySelector(
         'input[name="leftInputRadio"]:checked'
     );
     const rightRadio = document.querySelector(
         'input[name="rightInputRadio"]:checked'
     );
-    const idx1 = leftRadio.id.match(/\d+/)[0] - 1;
-    const idx2 = rightRadio.id.match(/\d+/)[0] - 1;
 
-    const temp = inputLines[idx1];
-    inputLines[idx1] = inputLines[idx2];
-    inputLines[idx2] = temp;
+    if ((leftRadio !== null) && (rightRadio !== null)) {
+        saveInputLines();
 
-    renderInputLines();
+        const idx1 = leftRadio.id.match(/\d+/)[0] - 1;
+        const idx2 = rightRadio.id.match(/\d+/)[0] - 1;
+
+        const temp = inputLines[idx1];
+        inputLines[idx1] = inputLines[idx2];
+        inputLines[idx2] = temp;
+
+        renderInputLines();
+    }
 }
 
