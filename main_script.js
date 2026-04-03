@@ -47,17 +47,8 @@ function save_lines() {
 }
 
 function add_input_box() {
-    const n = input_lines.length;
-    const input_lines_div = document.getElementById("input_lines_div");
-    let box = document.createElement("textarea");
-    box.id = `input_box_${n+1}`;
-    box.rows = "4";
-    box.cols = "80";
-    box.value = ""; // text inside the box
-    input_lines_div.appendChild(box);
-    input_lines_div.appendChild(document.createElement("br"));
-
     save_lines();
+    input_lines.push("");
     render_lines();
 }
 
