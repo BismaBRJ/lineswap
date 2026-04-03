@@ -10,7 +10,24 @@ function render_lines() {
     input_lines_div.innerHTML = "";
 
     for (let i = 0; i < n; i++) {
-        line = input_lines[i];
+        if (n > 2) {
+            // create delete button
+            let delete_button = document.createElement("button");
+            delete_button.id = `delete_button_${i+1}`;
+            delete_button.innerHTML = "Delete";
+            // todo: actual deleting mechanism, define a new function etc
+            input_lines_div.appendChild(delete_button);
+        }
+
+        // create clear button
+        let clear_button = document.createElement("button");
+        clear_button.id = `clear_button_${i+1}`;
+        clear_button.innerHTML = "Clear";
+        // todo: actual clearing mechanism, define a new function etc
+        input_lines_div.appendChild(clear_button);
+
+        // create text box
+        let line = input_lines[i];
         let box = document.createElement("textarea");
         box.id = `input_box_${i+1}`;
         box.rows = "4";
