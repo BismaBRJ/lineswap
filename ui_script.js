@@ -15,7 +15,7 @@ function render_lines() {
             let delete_button = document.createElement("button");
             delete_button.id = `delete_button_${idx+1}`;
             delete_button.innerHTML = "Delete";
-            // todo: actual deleting mechanism, define a new function etc
+            delete_button.addEventListener("click", () => delete_input_box(idx));
             input_lines_div.appendChild(delete_button);
         }
 
@@ -72,6 +72,12 @@ function add_input_box() {
 function clear_input_box(idx) {
     save_lines();
     input_lines[idx] = "";
+    render_lines();
+}
+
+function delete_input_box(idx) {
+    save_lines();
+    input_lines.splice(idx, 1);
     render_lines();
 }
 
